@@ -1,0 +1,19 @@
+crds:
+  # -- Install and upgrade CRDs
+  install: true
+  # -- Keep CRDs on chart uninstall
+  keep: true
+
+global:
+  env:
+    - name: TZ
+      value: Asia/Kolkata
+
+configs:
+  cm:
+    kustomize.buildOptions: --enable-helm
+  params:
+    server.insecure: true
+
+dex:
+  enabled: false
