@@ -82,6 +82,10 @@ ingress:
   enabled: false
 
 
+preUpgradeChecker:
+  jobEnabled: false
+
+
 #  For Kubernetes < v1.25, if your cluster enables Pod Security Policy admission controller,
 #  set this to `true` to ship longhorn-psp which allow privileged Longhorn pods to start
 enablePSP: false
