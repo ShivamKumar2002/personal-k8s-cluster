@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: obsidian-couchdb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '3'
+spec:
+  project: default
+  sources:
+  - repoURL: https://apache.github.io/couchdb-helm
+    chart: couchdb
+    targetRevision: 4.5.6
+    helm:
+      valueFiles:
+      - $repo/cluster/apps/synchronization/obsidian-couchdb/values.yaml
+  - repoURL: https://github.com/ShivamKumar2002/personal-k8s-cluster
+    path: cluster/apps/synchronization/obsidian-couchdb
+    targetRevision: main
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: obsidian-couchdb
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
