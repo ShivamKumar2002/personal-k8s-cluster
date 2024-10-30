@@ -42,7 +42,7 @@ The repository is organized as follows:
     |   |       |--- values.yaml
     |   |--- category2/
     |       |--- app3/
-    |           |--- kustomization.yaml
+    |           |--- values.yaml
     |
     |--- argocd/
     |   |--- kustomization.yaml
@@ -67,7 +67,7 @@ The `cluster/main.yaml` file serves as the primary entry point for ArgoCD in thi
 
 #### cluster/apps/
 
-The `cluster/apps/` directory contains contains folders for individual applications or services. Each application folder includes:
+The `cluster/apps/` directory contains contains folders for individual applications or services. Each application folder may have:
 
 - A `kustomization.yaml` file for Kustomize-based deployments.
 - Kubernetes manifest files for direct application.
@@ -97,7 +97,7 @@ This repository uses the [App of Apps](https://argo-cd.readthedocs.io/en/stable/
 
 - ArgoCD then processes each of these Applications:
    - It applies any Kubernetes manifest files found in the specified `cluster/apps/` subdirectory.
-   - It also applies any Helm Charts or Kustomizations defined within each Application's spec.
+   - It also applies any Manifests or Kustomizations defined within each Application's spec.
 
 This setup provides several benefits:
 - Clear separation between application definitions (`cluster/apps/`) and deployment instructions (`cluster/bootstrap/`).
@@ -117,7 +117,6 @@ This approach allows for efficient management of multiple applications in a Kube
 ## Best Practices
 
 - Always use declarative configuration.
-- Define Helm charts in `kustomization.yaml` for consistency.
 - Utilize Kustomize overlays for managing environment-specific variations.
 - Keep sensitive information out of the repository. Use [External Secrets Operator](https://external-secrets.io/latest/) or a similar solution for managing secrets.
 - Regularly update applications and ArgoCD to the latest stable versions.
