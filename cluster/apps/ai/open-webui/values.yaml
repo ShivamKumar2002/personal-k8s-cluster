@@ -24,6 +24,7 @@ extraEnvVars:
   - name: ENV
     value: "prod"
   - name: ENABLE_SIGNUP
+    # will manage the users manually
     value: "false"
   - name: ENABLE_RAG_WEB_SEARCH
     value: "true"
