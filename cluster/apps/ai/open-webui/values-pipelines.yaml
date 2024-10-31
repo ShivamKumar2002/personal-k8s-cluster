@@ -1,5 +1,7 @@
 replicaCount: 1
 
+nameOverride: open-webui-pipelines
+
 persistentVolume:
   enabled: true
   annotations:
