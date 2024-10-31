@@ -2,7 +2,7 @@ replicaCount: 1
 
 nameOverride: open-webui-pipelines
 
-persistentVolume:
+persistence:
   enabled: true
   annotations:
     # prevent deletion of persistent volume by argoCD
