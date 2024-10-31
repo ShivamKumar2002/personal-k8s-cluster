@@ -22,15 +22,15 @@ openaiBaseApiUrl: http://open-webui-pipelines.open-webui.svc.cluster.local:9099
 
 extraEnvVars:
   - name: ENV
-    value: prod
+    value: "prod"
   - name: ENABLE_SIGNUP
-    value: false
+    value: "false"
   - name: ENABLE_RAG_WEB_SEARCH
-    value: true
+    value: "true"
   - name: ENABLE_SEARCH_QUERY
-    value: true
+    value: "true"
   - name: RAG_WEB_SEARCH_ENGINE
-    value: searxng
+    value: "searxng"
   - name: SEARXNG_QUERY_URL
     # See live public instances at https://searx.space
-    value: https://opnxng.com/search?q=<query>
+    value: "https://opnxng.com/search?q=<query>"
