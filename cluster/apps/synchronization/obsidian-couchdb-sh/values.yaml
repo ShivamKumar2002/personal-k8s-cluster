@@ -1,0 +1,60 @@
+# -- the initial number of nodes in the CouchDB cluster.
+clusterSize: 1
+
+# -- couchdbConfig will override default CouchDB configuration settings.
+# The contents of this map are reformatted into a .ini file laid down
+# by a ConfigMap object.
+# ref: http://docs.couchdb.org/en/latest/config/index.html
+# NOTE: This configuration is required to allow obisidian-livesync plugin to work properly.
+couchdbConfig:
+  chttpd:
+    require_valid_user: true
+    enable_cors: true
+  cors:
+    credentials: true
+    headers: accept, authorization, content-type, origin, referer
+    max_age: 3600
+    methods: GET, PUT, POST, HEAD, DELETE
+    origins: app://obsidian.md,capacitor://localhost,http://localhost
+  couchdb:
+    uuid: 96887b3f-8dff-4a6e-b2ca-b2555040631f
+    max_document_size: 2147483648  # 2 GB
+
+# -- If allowAdminParty is enabled the cluster will start up without any database
+# administrator account; i.e., all users will be granted administrative
+# access. Otherwise, the system will look for a Secret called
+# <ReleaseName>-couchdb containing `adminUsername`, `adminPassword` and
+# `cookieAuthSecret` keys. See the `createAdminSecret` flag.
+# ref: https://kubernetes.io/docs/concepts/configuration/secret/
+allowAdminParty: false
+
+# Set it to true to automatically enable the cluster after installation.
+# It will create a post-install job that will send the {"action": "finish_cluster"}
+# message to CouchDB to finalize the cluster and add the defaultDatabases listed.
+# Note that this job needs service.enabled to be set to true and if you use adminHash,
+# a valid adminPassword in the secret. Also set the --wait flag when you install to
+# avoid first jobs failure (helm install --wait ...)
+autoSetup:
+  enabled: true
+
+createAdminSecret: false
+
+# -- The storage volume used by each Pod in the StatefulSet. If a
+# persistentVolume is not enabled, the Pods will use `emptyDir` ephemeral
+# local storage. Setting the storageClass attribute to "-" disables dynamic
+# provisioning of Persistent Volumes; leaving it unset will invoke the default
+# provisioner.
+persistentVolume:
+  enabled: true
+  # NOTE: the number of existing claims must match the cluster size
+  existingClaims: []
+  annotations:
+    # prevent deletion of persistent volume by argoCD
+    argocd.argoproj.io/sync-options: Delete=false
+  accessModes:
+    - ReadWriteOnce
+  size: 2Gi
+  storageClass: longhorn
+
+# -- Flip this to flag to include the Search container in each Pod
+enableSearch: false
