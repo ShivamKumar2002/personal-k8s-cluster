@@ -29,6 +29,7 @@ configs:
           return hs
   params:
     server.insecure: true
+    controller.diff.server.side: "true"
 
 dex:
   enabled: false
