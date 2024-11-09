@@ -1,0 +1,6 @@
+cloudflare:
+  tunnelName: personal-k8s-cluster
+  enableWarp: true
+  secretName: cloudflare-tunnel-credentials
+
+replicaCount: 1
