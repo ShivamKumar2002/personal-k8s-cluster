@@ -11,6 +11,7 @@ global:
 
 configs:
   cm:
+    application.instanceLabelKey: argocd.argoproj.io/instance
     kustomize.buildOptions: --enable-helm
 
     resource.compareoptions: |
