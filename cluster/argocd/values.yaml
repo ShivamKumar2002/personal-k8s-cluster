@@ -12,6 +12,48 @@ global:
 configs:
   cm:
     kustomize.buildOptions: --enable-helm
+
+    resource.compareoptions: |
+      # if ignoreAggregatedRoles set to true then differences caused by aggregated roles in RBAC resources are ignored.
+      ignoreAggregatedRoles: true
+
+      # disables status field diffing in specified resource types
+      # 'crd' - CustomResourceDefinitions (default)
+      # 'all' - all resources
+      # 'none' - disabled
+      ignoreResourceStatusField: all
+
+    # Configuration to define customizations ignoring differences between live and desired states for
+    # all resources (GK).
+    resource.customizations.ignoreDifferences.all: |
+      managedFieldsManagers:
+      - kube-controller-manager
+      jsonPointers:
+      - /spec/replicas
+
+    # Configuration to define customizations ignoring differences during watched resource updates to skip application reconciles.
+    resource.customizations.ignoreResourceUpdates.all: |
+      jsonPointers:
+      - /metadata/resourceVersion
+
+    # Configuration to define customizations ignoring differences during watched resource updates can be configured via splitted sub key.
+    resource.customizations.ignoreResourceUpdates.argoproj.io_Application: |
+      jsonPointers:
+      - /status
+
+    # jsonPointers and jqPathExpressions can be specified.
+    resource.customizations.ignoreResourceUpdates.autoscaling_HorizontalPodAutoscaler: |
+      jqPathExpressions:
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/behavior"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/conditions"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/metrics"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/current-metrics"'
+      jsonPointers:
+      - /metadata/annotations/autoscaling.alpha.kubernetes.io~1behavior
+      - /metadata/annotations/autoscaling.alpha.kubernetes.io~1conditions
+      - /metadata/annotations/autoscaling.alpha.kubernetes.io~1metrics
+      - /metadata/annotations/autoscaling.alpha.kubernetes.io~1current-metrics
+
     resource.customizations: |
       argoproj.io/Application:
         health.lua: |
@@ -27,6 +69,22 @@ configs:
             end
           end
           return hs
+
+    # Enable resource.customizations.ignoreResourceUpdates rules. If "false," those rules are not applied, and all updates
+    # to resources are applied to the cluster cache. Default is false.
+    resource.ignoreResourceUpdatesEnabled: "true"
+
+    # Application reconciliation timeout is the max amount of time required to discover if a new manifests version got
+    # published to the repository. Reconciliation by timeout is disabled if timeout is set to 0. Three minutes by default.
+    # > Note: argocd-repo-server deployment must be manually restarted after changing the setting.
+    timeout.reconciliation: 300s
+    # With a large number of applications, the periodic refresh for each application can cause a spike in the refresh queue
+    # and can cause a spike in the repo-server component. To avoid this, you can set a jitter to the sync timeout, which will
+    # spread out the refreshes and give time to the repo-server to catch up. The jitter is the maximum duration that can be
+    # added to the sync timeout. So, if the sync timeout is 3 minutes and the jitter is 1 minute, then the actual timeout will
+    # be between 3 and 4 minutes. Disabled when the value is 0, defaults to 0.
+    timeout.reconciliation.jitter: 60s
+
   params:
     server.insecure: true
     controller.diff.server.side: "true"
