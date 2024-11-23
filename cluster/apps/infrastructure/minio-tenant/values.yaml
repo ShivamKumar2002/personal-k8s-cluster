@@ -1,0 +1,16 @@
+tenant:
+  name: minio-tenant
+  configuration:
+    name: minio-tenant-secret
+  configSecret:
+    name: minio-tenant-secret
+    existingSecret: true
+    # defined in the existing secret
+    accessKey: ""
+    secretKey: ""
+  pools:
+    - servers: 1
+      name: pool-0
+      volumesPerServer: 1
+      size: 30G
+      storageClassName: longhorn
