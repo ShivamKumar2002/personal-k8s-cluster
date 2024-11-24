@@ -2,7 +2,7 @@ persistence:
   # -- Setting that allows you to specify the default Longhorn StorageClass.
   defaultClass: true
   # -- Filesystem type of the default Longhorn StorageClass.
-  defaultFsType: ext4
+  defaultFsType: xfs
   # -- Replica count of the default Longhorn StorageClass.
   defaultClassReplicaCount: 1
   # -- Data locality of the default Longhorn StorageClass. (Options: "disabled", "best-effort")
@@ -59,7 +59,7 @@ defaultSettings:
 longhornManager:
   log:
     ## Allowed values are `plain` or `json`.
-    format: plain
+    format: json
 
 
 longhornUI:
