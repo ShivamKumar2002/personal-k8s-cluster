@@ -56,7 +56,7 @@ defaultSettings:
   # -- Setting that allows fast rebuilding of replicas using the checksum of snapshot disk files. Before enabling this setting, you must set the snapshot-data-integrity value to "enable" or "fast-check".
   fastReplicaRebuildEnabled: true
   # -- Maximum snapshot count for a volume. The value should be between 2 to 250
-  snapshotMaxCount: 10
+  snapshotMaxCount: 100
   # -- Setting that allows you to enable the V1 Data Engine.
   v1DataEngine: true
   # -- Setting that allows you to enable the V2 Data Engine, which is based on the Storage Performance Development Kit (SPDK). The V2 Data Engine is a preview feature and should not be used in production environments.
