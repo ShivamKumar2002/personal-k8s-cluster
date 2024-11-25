@@ -17,7 +17,11 @@ persistence:
   removeSnapshotsDuringFilesystemTrim: ignored
   # -- Setting that allows you to specify the data engine version for the default Longhorn StorageClass. (Options: "v1", "v2")
   dataEngine: v1
-
+  recurringJobSelector:
+    # -- Setting that allows you to enable the recurring job selector for a Longhorn StorageClass.
+    enable: true
+    # -- Recurring job selector for a Longhorn StorageClass. Ensure that quotes are used correctly when specifying job parameters. (Example: `[{"name":"backup", "isGroup":true}]`)
+    jobList: '[{"name":"daily-backup", "isGroup":true}, {"name": "weekly-backup", "isGroup":true}, {"name": "weekly-trim", "isGroup":true}, {"name": "weekly-cleanup", "isGroup":true}]'
 
 defaultSettings:
   # -- Endpoint used to access the backupstore. (Options: "NFS", "CIFS", "AWS", "GCP", "AZURE")
