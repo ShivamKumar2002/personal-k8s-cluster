@@ -1,0 +1,7 @@
+controller:
+  enabled: true
+  replicaCount: 1
+
+webhook:
+  enabled: true
+  replicaCount: 1

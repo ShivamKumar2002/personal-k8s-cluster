@@ -1,26 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn
+  name: snapshot-controller
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   project: default
   sources:
-  - repoURL: 'https://charts.longhorn.io'
-    chart: longhorn
-    targetRevision: 1.7.2
+  - repoURL: 'https://piraeus.io/helm-charts/'
+    chart: snapshot-controller
+    targetRevision: 3.0.6
     helm:
       valueFiles:
-      - $repo/cluster/apps/infrastructure/longhorn/values.yaml
+      - $repo/cluster/apps/infrastructure/snapshot-controller/values.yaml
   - repoURL: https://github.com/ShivamKumar2002/personal-k8s-cluster
-    path: cluster/apps/infrastructure/longhorn
+    path: cluster/apps/infrastructure/snapshot-controller
     targetRevision: main
     ref: repo
   destination:
     name: in-cluster
-    namespace: longhorn-system
+    namespace: kube-system
   syncPolicy:
     automated:
       selfHeal: true
