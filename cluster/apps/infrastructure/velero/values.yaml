@@ -39,7 +39,7 @@ configuration:
     config:
       region:  k8s-cluster-1
       s3ForcePathStyle: "true"
-      s3Url: "https://minio.minio-tenant.svc.cluster.local:9000"
+      s3Url: "https://minio.minio-tenant.svc.cluster.local"
       insecureSkipTLSVerify: true
   
   features: EnableCSI
