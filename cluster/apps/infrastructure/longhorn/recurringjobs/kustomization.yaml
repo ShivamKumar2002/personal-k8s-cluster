@@ -1,0 +1,5 @@
+resources:
+  - daily-backup.yaml
+  - weekly-backup.yaml
+  - weekly-cleanup.yaml
+  - weekly-trim.yaml
