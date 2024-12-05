@@ -4,3 +4,7 @@ cloudflare:
   secretName: cloudflare-tunnel-credentials
 
 replicaCount: 1
+
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
