@@ -58,3 +58,19 @@ persistentVolume:
 
 # -- Flip this to flag to include the Search container in each Pod
 enableSearch: false
+
+# Security context
+podSecurityContext:
+  fsGroup: 5984
+  fsGroupChangePolicy: "Always"
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  runAsUser: 5984
+  runAsGroup: 5984
+  capabilities:
+    drop:
+      - ALL
