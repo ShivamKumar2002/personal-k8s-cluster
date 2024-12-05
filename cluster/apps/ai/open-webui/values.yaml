@@ -39,3 +39,22 @@ extraEnvVars:
   - name: SEARXNG_QUERY_URL
     # See live public instances at https://searx.space
     value: "https://opnxng.com/search?q=<query>"
+
+# -- Configure pod security context
+# ref: <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-containe>
+podSecurityContext:
+  runAsUser: 100
+  runAsGroup: 100
+  runAsNonRoot: true
+  fsGroup: 100
+  fsGroupChangePolicy: Always
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- Configure container security context
+# ref: <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-containe>
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
