@@ -1,0 +1,36 @@
+linkwarden:
+  # I know this should be a secret, but this deployment is not exposed publicly, so it's fine for now.
+  nextAuthSecret: "Su0BchRpo4M0LvGSR9oxuGcQrVsrY4ZrVwRC1kzxnno="
+
+storage:
+  type: filesystem
+  storageFolder: /data/data
+  pvc:
+    enabled: true
+    size: 5Gi
+    storageClass: longhorn
+
+# CNPG configuration
+postgresql:
+  enabled: true
+  cluster:
+    instances: 1
+    storage:
+      size: 5Gi
+      storageClass: longhorn
+
+# Security context
+podSecurityContext:
+  fsGroup: 54241
+  fsGroupChangePolicy: "OnRootMismatch"
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  runAsUser: 54241
+  runAsGroup: 54241
+  capabilities:
+    drop:
+      - ALL
