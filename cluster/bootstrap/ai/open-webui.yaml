@@ -16,7 +16,7 @@ spec:
       - $repo/cluster/apps/ai/open-webui/values.yaml
   - repoURL: https://helm.openwebui.com/
     chart: pipelines
-    targetRevision: 0.0.4
+    targetRevision: 0.0.6
     helm:
       valueFiles:
       - $repo/cluster/apps/ai/open-webui/values-pipelines.yaml
