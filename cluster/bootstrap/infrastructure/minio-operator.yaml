@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://operator.min.io
     chart: operator
-    targetRevision: 6.0.4
+    targetRevision: 7.0.0
     helm:
       valueFiles:
       - $repo/cluster/apps/infrastructure/minio-operator/values.yaml
