@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://operator.min.io
     chart: tenant
-    targetRevision: 6.0.4
+    targetRevision: 7.0.0
     helm:
       valueFiles:
       - $repo/cluster/apps/infrastructure/minio-tenant/values.yaml
