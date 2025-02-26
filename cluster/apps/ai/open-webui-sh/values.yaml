@@ -1,0 +1,41 @@
+persistence:
+  enabled: true
+  annotations:
+    # prevent deletion of persistent volume by argoCD
+    argocd.argoproj.io/sync-options: Delete=false
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  storageClass: longhorn
+
+ollama:
+  enabled: false
+
+ingress:
+  enabled: false
+
+pipelines:
+  # manage pipeline chart manually instead
+  enabled: false
+
+openaiBaseApiUrl: http://open-webui-pipelines.open-webui-sh.svc.cluster.local:9099
+
+extraEnvVars:
+  - name: ENV
+    value: "prod"
+  # -- Default API key value for Pipelines.
+  # we don't need to change since we aren't exposing pipelines publicly.
+  - name: OPENAI_API_KEY
+    value: "0p3n-w3bu!"
+  # -- will manage the users manually
+  - name: ENABLE_SIGNUP
+    value: "true"
+  - name: ENABLE_RAG_WEB_SEARCH
+    value: "true"
+  - name: ENABLE_SEARCH_QUERY
+    value: "true"
+  - name: RAG_WEB_SEARCH_ENGINE
+    value: "searxng"
+  - name: SEARXNG_QUERY_URL
+    # See live public instances at https://searx.space
+    value: "https://opnxng.com/search?q=<query>"
