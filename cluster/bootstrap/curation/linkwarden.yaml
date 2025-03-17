@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://shivamkumar2002.github.io/helm-charts/
     chart: linkwarden
-    targetRevision: 0.1.1
+    targetRevision: 0.2.0
     helm:
       valueFiles:
       - $repo/cluster/apps/curation/linkwarden/values.yaml
