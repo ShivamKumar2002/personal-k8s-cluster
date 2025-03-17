@@ -20,17 +20,17 @@ postgresql:
       storageClass: longhorn
 
 # Security context
-podSecurityContext:
-  fsGroup: 1000
-  fsGroupChangePolicy: "OnRootMismatch"
-  seccompProfile:
-    type: RuntimeDefault
-
-containerSecurityContext:
-  runAsNonRoot: true
-  allowPrivilegeEscalation: false
-  runAsUser: 1000
-  runAsGroup: 1000
-  capabilities:
-    drop:
-      - ALL
+# podSecurityContext:
+#   fsGroup: 1000
+#   fsGroupChangePolicy: "OnRootMismatch"
+#   seccompProfile:
+#     type: RuntimeDefault
+#
+# containerSecurityContext:
+#   runAsNonRoot: true
+#   allowPrivilegeEscalation: false
+#   runAsUser: 1000
+#   runAsGroup: 1000
+#   capabilities:
+#     drop:
+#       - ALL
