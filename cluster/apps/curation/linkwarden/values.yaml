@@ -16,7 +16,7 @@ postgresql:
   cluster:
     instances: 1
     storage:
-      size: 5Gi
+      size: 10Gi
       storageClass: longhorn
 
 # Security context
