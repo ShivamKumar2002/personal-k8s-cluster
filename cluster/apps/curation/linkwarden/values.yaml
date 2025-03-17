@@ -1,14 +1,13 @@
 linkwarden:
   # I know this should be a secret, but this deployment is not exposed publicly, so it's fine for now.
   nextAuthSecret: "Su0BchRpo4M0LvGSR9oxuGcQrVsrY4ZrVwRC1kzxnno="
-
-storage:
-  type: filesystem
-  storageFolder: /data/data
-  pvc:
-    enabled: true
-    size: 10Gi
-    storageClass: longhorn
+  storage:
+    type: filesystem
+    storageFolder: /data/data
+    pvc:
+      enabled: true
+      size: 10Gi
+      storageClass: longhorn
 
 # CNPG configuration
 postgresql:
