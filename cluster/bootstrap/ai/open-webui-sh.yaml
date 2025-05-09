@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://helm.openwebui.com/
     chart: open-webui
-    targetRevision: 6.6.0
+    targetRevision: 6.13.0
     helm:
       valueFiles:
       - $repo/cluster/apps/ai/open-webui-sh/values.yaml
