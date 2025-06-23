@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: 'https://piraeus.io/helm-charts/'
     chart: snapshot-controller
-    targetRevision: 4.0.2
+    targetRevision: 4.1.0
     helm:
       valueFiles:
       - $repo/cluster/apps/infrastructure/snapshot-controller/values.yaml
