@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://apache.github.io/couchdb-helm
     chart: couchdb
-    targetRevision: 4.6.0
+    targetRevision: 4.6.2
     helm:
       valueFiles:
       - $repo/cluster/apps/synchronization/obsidian-couchdb/values.yaml
